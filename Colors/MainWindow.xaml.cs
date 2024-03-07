@@ -142,6 +142,9 @@ namespace Colors
         private void ChangeHSL(HSL value)
         {
             // todo : same thing as CHangeRGB
+            hueSlider.Value = value.Hue;
+            saturationSlider.Value = value.Saturation;
+            luminanceSlider.Value = value.Luminance;
         }
 
         /// <summary>
@@ -171,6 +174,18 @@ namespace Colors
         private void UserChangeHSL(object sender, RoutedEventArgs e)
         {
             // todo : same thing as UserCHangeCMYB but, with HSL and not RGB
+            try
+            {
+                HSL hsl = new HSL(Int32.Parse(hueText.Text), Int32.Parse(saturationText.Text), Int32.Parse(luminanceText.Text));
+                ChangeColor(hsl.ToColor());
+                ChangeCMYB(hsl.ToCMYB());
+                ChangeRGB(hsl.ToRGB());
+                ChangeHTML(hsl.ToHTML());
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
         }
 
         /// <summary>

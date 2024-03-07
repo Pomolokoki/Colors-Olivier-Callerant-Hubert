@@ -71,7 +71,7 @@ namespace Colors.model
         /// <returns>The same color with CMJN components</returns>
         public CMYB ToCMYB()
         {
-            throw new NotImplementedException();
+            return ToRGB().ToCMYB();
         }
         /// <summary>
         /// Convert the color in HSL
@@ -86,8 +86,8 @@ namespace Colors.model
         /// </summary>
         /// <returns>the color in HTML string format</returns>
         public HTML ToHTML()
-        {
-            throw new NotImplementedException();
+        { 
+            return ToRGB().ToHTML();
         }
 
         /// <summary>
@@ -96,7 +96,31 @@ namespace Colors.model
         /// <returns>the same color with RGB components</returns>
         public RGB ToRGB()
         {
-            throw new NotImplementedException();
+            float M = luminance * 255 / 100;
+            float m = (100 - saturation) * luminance * 255 / 10000;
+            float C = M - m;
+            float i = hue / 60;
+            float X = C * (i % 2);
+            if (i<1) {
+                return new RGB(C + m, X + m, m);
+            }
+            else if (i>=1 && i<2) {
+                return new RGB(X + m, C + m, m);
+            }
+            else if (i>=2 && i<3)
+            {
+                return new RGB(m, C + m, X + m);
+            }
+            else if (i>=3 && i<4) {
+                return new RGB(m, X + m, C + m);
+            }
+            else if (i>=4 && i<5) {
+                return new RGB(X + m, m, C + m);
+            }
+            else {
+                return new RGB(C + m, m, X + m);
+            }
+
         }
 
         /// <summary>
@@ -105,7 +129,7 @@ namespace Colors.model
         /// <returns>the color in standard WPF color format</returns>
         public Color ToColor()
         {
-            throw new NotImplementedException();
+            return ToRGB().ToColor();
         }
 
         #endregion
