@@ -154,6 +154,7 @@ namespace Colors.model
         /// Convert the color in standard WPF color format
         /// </summary>
         /// <returns>the color in standard WPF color format</returns>
+        /// <author>Callerand Thibault</author>
         public Color ToColor()
         {
             return Color.FromRgb((byte)red, (byte)green, (byte)blue);
