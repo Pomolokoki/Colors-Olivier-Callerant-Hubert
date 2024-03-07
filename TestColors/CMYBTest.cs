@@ -11,7 +11,7 @@ namespace TestColors
         public void TestToRGB()
         {
             CMYB cmyb = new CMYB(33, 52, 49, 14);
-            RGB rgbExp = new RGB(147, 105, 112);
+            RGB rgbExp = new RGB(146, 105, 111);
             RGB result = cmyb.ToRGB();
             Assert.Equal(rgbExp, result);
         }

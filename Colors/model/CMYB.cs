@@ -81,6 +81,7 @@ namespace Colors.model
         /// Convert the color in CMJN
         /// </summary>
         /// <returns>The same color with CMJN components</returns>
+        /// <author>Hubert Tom</author>
         public CMYB ToCMYB()
         {
             return this;
@@ -89,6 +90,7 @@ namespace Colors.model
         /// Convert the color in HSL
         /// </summary>
         /// <returns>The color with HSL components</returns>
+        /// <author>Hubert Tom</author>
         public HSL ToHSL()
         {
             return ToRGB().ToHSL();
@@ -97,6 +99,7 @@ namespace Colors.model
         /// Convert the color in HTML
         /// </summary>
         /// <returns>the color in HTML string format</returns>
+        /// <author>Hubert Tom</author>
         public HTML ToHTML()
         {
             return ToRGB().ToHTML();
@@ -106,6 +109,7 @@ namespace Colors.model
         /// Convert the color in RGB
         /// </summary>
         /// <returns>the same color with RGB components</returns>
+        /// <author>Hubert Tom</author>
         public RGB ToRGB()
         {
             return new RGB(255 * (100 - cyan * (1 - black / 100) - black) / 100,
@@ -117,6 +121,7 @@ namespace Colors.model
         /// Convert the color in standard WPF color format
         /// </summary>
         /// <returns>the color in standard WPF color format</returns>
+        /// <author>Hubert Tom</author>
         public Color ToColor()
         {
             return ToRGB().ToColor();

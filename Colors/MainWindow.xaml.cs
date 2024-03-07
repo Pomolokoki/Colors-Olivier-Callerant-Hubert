@@ -130,6 +130,7 @@ namespace Colors
         /// Change the CMYB sliders
         /// </summary>
         /// <param name="value">the new color</param>
+        /// <author>Hubert Tom</author>
         private void ChangeCMYB(CMYB value)
         {
             // todo : same thing as CHangeRGB
@@ -143,6 +144,7 @@ namespace Colors
         /// Change the HSL sliders
         /// </summary>
         /// <param name="value">the new color</param>
+        /// <author>Hubert Tom</author>
         private void ChangeHSL(HSL value)
         {
             // todo : same thing as CHangeRGB
@@ -155,6 +157,7 @@ namespace Colors
         /// Change the HTML text
         /// </summary>
         /// <param name="value">the new color</param>
+        /// <author>Olivier Mathis</author>
         private void ChangeHTML(HTML value)
         {
             // todo : same thing as CHangeRGB
@@ -167,6 +170,7 @@ namespace Colors
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Hubert Tom</author>
         private void UserChangeCMYB(object sender, RoutedEventArgs e)
         {
             // todo : same thing as UserCHangeRGB but, with CMYB and not RGB
@@ -189,6 +193,7 @@ namespace Colors
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Hubert Tom</author>
         private void UserChangeHSL(object sender, RoutedEventArgs e)
         {
             // todo : same thing as UserCHangeCMYB but, with HSL and not RGB
@@ -211,6 +216,7 @@ namespace Colors
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Olivier Mathis</author>
         private void UserChangeHTML(object sender, RoutedEventArgs e)
         {
             // todo : same thing as UserCHangeRGB but, with HTML and not RGB

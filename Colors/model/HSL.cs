@@ -69,6 +69,7 @@ namespace Colors.model
         /// Convert the color in CMJN
         /// </summary>
         /// <returns>The same color with CMJN components</returns>
+        /// <author>Hubert Tom</author>
         public CMYB ToCMYB()
         {
             return ToRGB().ToCMYB();
@@ -76,7 +77,8 @@ namespace Colors.model
         /// <summary>
         /// Convert the color in HSL
         /// </summary>
-        /// <returns>The color with HSL components</returns>
+        /// <returns>The color with HSL components</returns
+        /// <author>Hubert Tom</author>
         public HSL ToHSL()
         {
             return this;
@@ -85,6 +87,7 @@ namespace Colors.model
         /// Convert the color in HTML
         /// </summary>
         /// <returns>the color in HTML string format</returns>
+        /// <author>Hubert Tom</author>
         public HTML ToHTML()
         { 
             return ToRGB().ToHTML();
@@ -94,6 +97,7 @@ namespace Colors.model
         /// Convert the color in RGB
         /// </summary>
         /// <returns>the same color with RGB components</returns>
+        /// <author>Hubert Tom</author>
         public RGB ToRGB()
         {
             float M = luminance * 255 / 100;
@@ -104,17 +108,17 @@ namespace Colors.model
             if (i<1) {
                 return new RGB(C + m, X + m, m);
             }
-            else if (i>=1 && i<2) {
+            else if (i>=1.0 && i<2.0) {
                 return new RGB(X + m, C + m, m);
             }
-            else if (i>=2 && i<3)
+            else if (i>=2.0 && i<3.0)
             {
                 return new RGB(m, C + m, X + m);
             }
-            else if (i>=3 && i<4) {
+            else if (i>=3.0 && i<4.0) {
                 return new RGB(m, X + m, C + m);
             }
-            else if (i>=4 && i<5) {
+            else if (i>=4.0 && i<5.0) {
                 return new RGB(X + m, m, C + m);
             }
             else {
@@ -127,6 +131,7 @@ namespace Colors.model
         /// Convert the color in standard WPF color format
         /// </summary>
         /// <returns>the color in standard WPF color format</returns>
+        /// <author>Hubert Tom</author>
         public Color ToColor()
         {
             return ToRGB().ToColor();

@@ -79,21 +79,22 @@ namespace Colors.model
         /// Convert the color in CMJN
         /// </summary>
         /// <returns>The same color with CMJN components</returns>
+        /// <author>Callerand Thibault</author>
         public CMYB ToCMYB()
         {
-            int R = 255 - this.Red;
-            int G = 255 - this.Green;
-            int B = 255 - this.Blue;
+            float R = 255 - this.Red;
+            float G = 255 - this.Green;
+            float B = 255 - this.Blue;
 
-            int X = 0;
+            float X = 0;
             if (R < G && R < B) { X = R; }
-            else if (G < B && G < B) { X = G; }
+            else if (G < R && G < B) { X = G; }
             else { X = B; }
 
-            int C = 100 * (R - X) / (255 - X);
-            int M = 100 * (G - X) / (255 - X);
-            int J = 100 * (B - X) / (255 - X);
-            int N = 100 * X / 255;
+            float C = 100 * (R - X) / (255 - X);
+            float M = 100 * (G - X) / (255 - X);
+            float J = 100 * (B - X) / (255 - X);
+            float N = 100 * X / 255;
 
             CMYB val = new CMYB(C, M, J, N);
             return val;
@@ -105,28 +106,28 @@ namespace Colors.model
         /// <author>Callerand Thibault</author>
         public HSL ToHSL()
         {
-            int R = this.Red;
-            int G = this.Green;
-            int B = this.Blue;
-            int m1 = 0, m2 = 0, C = 0;
+            float R = this.Red;
+            float G = this.Green;
+            float B = this.Blue;
+            float m1 = 0, m2 = 0, C = 0;
 
             if (R > G && R > B) { m1 = R; }
-            else if (G > B && G > B) { m1 = G; }
+            else if (G > R && G > B) { m1 = G; }
             else { m1 = B; };
 
             if (R < G && R < B) { m2 = R; }
-            else if (G < B && G < B) { m2 = G; }
+            else if (G < R && G < B) { m2 = G; }
             else { m2 = B; };
 
             C = m1 - m2;
-            int T = 0;
+            float T = 0;
             if (m1 == R && C != 0) { T = 60 * (((G - B) / C) % 6); }
             else if (m1 == G && C != 0) { T = 60 * (((B - R) / C) + 2); }
             else if (C != 0) { T = 60 * (((R - G) / C) + 4); };
 
             if (T < 0) { T += 360; };
-            int S = 100 * C / m1;
-            int L = (int)(100 * (0.3 * R + 0.6 * G + 0.1 * B) / 255);
+            float S = 100 * C / m1;
+            float L = (float)(100 * (0.3 * R + 0.6 * G + 0.1 * B) / 255);
 
             HSL val = new HSL(T, S, L);
             return val;
@@ -155,7 +156,7 @@ namespace Colors.model
         /// <returns>the color in standard WPF color format</returns>
         public Color ToColor()
         {
-            throw new NotImplementedException();
+            return Color.FromRgb((byte)red, (byte)green, (byte)blue);
         }
 
         #endregion

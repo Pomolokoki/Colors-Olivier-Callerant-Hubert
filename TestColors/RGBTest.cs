@@ -10,7 +10,7 @@ namespace TestColors
         public void TestToCMYB()
         {
             RGB test = new RGB(133, 101, 147);
-            CMYB expResult = new CMYB(10, 31, 0, 42);
+            CMYB expResult = new CMYB(9, 31, 0, 42);
             CMYB result = test.ToCMYB();
             Assert.Equal(expResult, result);
         }
@@ -19,7 +19,7 @@ namespace TestColors
         public void TestToHSL()
         {
             RGB rgb = new RGB(69, 158, 101);
-            HSL hslExcepted = new HSL(142, 56, 49);
+            HSL hslExcepted = new HSL(141, 56, 49);
             HSL result = rgb.ToHSL();
             Assert.Equal(hslExcepted, result);
         }

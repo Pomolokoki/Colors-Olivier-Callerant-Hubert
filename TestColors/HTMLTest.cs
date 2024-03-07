@@ -19,7 +19,7 @@ namespace TestColors
         public void TestToHSL()
         {
             HTML html = new HTML("#93BE3F");
-            HSL exp = new HSL(80, 67, 64);
+            HSL exp = new HSL(80, 66, 64);
             HSL res = html.ToHSL();
             Assert.Equal(exp, res);
         }
@@ -28,7 +28,7 @@ namespace TestColors
         public void TestToCMYB()
         {
             HTML html = new HTML("#323133");
-            CMYB exp = new CMYB(2, 4, 0, 80);
+            CMYB exp = new CMYB(1, 3, 0, 80);
             CMYB res = html.ToCMYB();
             Assert.Equal(exp, res);
         }

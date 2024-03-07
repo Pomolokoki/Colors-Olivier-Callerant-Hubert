@@ -54,6 +54,7 @@ namespace Colors.model
         /// Convert the color in CMJN
         /// </summary>
         /// <returns>The same color with CMJN components</returns>
+        /// <author>Olivier Mathis</author>
         public CMYB ToCMYB()
         {
             try
@@ -63,14 +64,19 @@ namespace Colors.model
                     throw new BadColorValues();
                 }
 
-                int red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
-                int green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
-                int blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
+                float red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
+                float green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
+                float blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
+                float r = 255 - red;
+                float g = 255 - green;
+                float b = 255 - blue;
 
-                float c = 1.0f - (red / 255.0f);
-                float m = 1.0f - (green / 255.0f);
-                float y = 1.0f - (blue / 255.0f);
-                float k = Math.Min(c, Math.Min(m, y));
+
+                float x = Math.Min(r, Math.Min(g, b));
+                float c = 100 * (r - x) / (255 - x);
+                float m = 100 * (g - x) / (255 - x);
+                float y = 100 * (b - x) / (255 - x);
+                float k = 100 * x / 255;
 
                 return new CMYB(c, m, y, k);
             }
@@ -84,6 +90,7 @@ namespace Colors.model
         /// Convert the color in HSL
         /// </summary>
         /// <returns>The color with HSL components</returns>
+        /// <author>Olivier Mathis</author>
         public HSL ToHSL()
         {
             try
@@ -94,46 +101,12 @@ namespace Colors.model
                     throw new BadColorValues();
                 }
 
-                // Extraire les composants Rouge, Vert et Bleu du code hexadécimal
-                int red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
-                int green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
-                int blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
+                float red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
+                float green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
+                float blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
 
-                // Normaliser les composants RGB pour les convertir en valeurs HSL
-                float r = red / 255.0f;
-                float g = green / 255.0f;
-                float b = blue / 255.0f;
 
-                float max = Math.Max(r, Math.Max(g, b));
-                float min = Math.Min(r, Math.Min(g, b));
-
-                float h, s, l;
-
-                // Calcul de la luminance (lightness)
-                l = (max + min) / 2.0f;
-
-                // Calcul de la saturation
-                if (max == min)
-                {
-                    h = s = 0; // Achromatic
-                }
-                else
-                {
-                    float d = max - min;
-                    s = l > 0.5f ? d / (2.0f - max - min) : d / (max + min);
-
-                    // Calcul de la teinte (hue)
-                    if (max == r)
-                        h = (g - b) / d + (g < b ? 6.0f : 0.0f);
-                    else if (max == g)
-                        h = (b - r) / d + 2.0f;
-                    else
-                        h = (r - g) / d + 4.0f;
-
-                    h /= 6.0f;
-                }
-
-                return new HSL(h, s, l);
+                return new RGB(red, green, blue).ToHSL(); ;
             }
             catch
             {
@@ -144,6 +117,7 @@ namespace Colors.model
         /// Convert the color in HTML
         /// </summary>
         /// <returns>the color in HTML string format</returns>
+        /// <author>Olivier Mathis</author>
         public HTML ToHTML()
         {
             return this;
@@ -153,6 +127,7 @@ namespace Colors.model
         /// Convert the color in RGB
         /// </summary>
         /// <returns>the same color with RGB components</returns>
+        /// <author>Olivier Mathis</author>
         public RGB ToRGB()
         {
             try
@@ -162,9 +137,9 @@ namespace Colors.model
                     throw new BadColorValues();
                 }
 
-                int red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
-                int green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
-                int blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
+                float red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
+                float green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
+                float blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
 
                 return new RGB(red, green, blue);
             }
@@ -178,6 +153,7 @@ namespace Colors.model
         /// Convert the color in standard WPF color format
         /// </summary>
         /// <returns>the color in standard WPF color format</returns>
+        /// <author>Olivier Mathis</author>
         public Color ToColor()
         {
             try
@@ -187,9 +163,9 @@ namespace Colors.model
                     throw new BadColorValues();
                 }
 
-                int red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
-                int green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
-                int blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
+                float red = Convert.ToInt32(htmlCode.Substring(1, 2), 16);
+                float green = Convert.ToInt32(htmlCode.Substring(3, 2), 16);
+                float blue = Convert.ToInt32(htmlCode.Substring(5, 2), 16);
 
                 return Color.FromRgb((byte)red, (byte)green, (byte)blue);
             }
