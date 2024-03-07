@@ -133,6 +133,10 @@ namespace Colors
         private void ChangeCMYB(CMYB value)
         {
             // todo : same thing as CHangeRGB
+            cyanSlider.Value = value.Cyan;
+            magentaSlider.Value = value.Magenta;
+            yellowSlider.Value = value.Yellow;
+            blackSlider.Value = value.Black;
         }
 
         /// <summary>
@@ -154,6 +158,8 @@ namespace Colors
         private void ChangeHTML(HTML value)
         {
             // todo : same thing as CHangeRGB
+            htmlText.Text = value.ToString();
+            
         }
 
         /// <summary>
@@ -164,6 +170,18 @@ namespace Colors
         private void UserChangeCMYB(object sender, RoutedEventArgs e)
         {
             // todo : same thing as UserCHangeRGB but, with CMYB and not RGB
+            try
+            {
+                CMYB rgb = new CMYB(Int32.Parse(cyanText.Text), Int32.Parse(magentaText.Text), Int32.Parse(yellowText.Text), Int32.Parse(blackText.Text));
+                ChangeColor(rgb.ToColor());
+                ChangeRGB(rgb.ToRGB());
+                ChangeHSL(rgb.ToHSL());
+                ChangeHTML(rgb.ToHTML());
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
         }
 
         /// <summary>
@@ -196,6 +214,19 @@ namespace Colors
         private void UserChangeHTML(object sender, RoutedEventArgs e)
         {
             // todo : same thing as UserCHangeRGB but, with HTML and not RGB
+            try
+            {
+                HTML htmlColor = new HTML(htmlText.Text);
+                ChangeColor(htmlColor.ToColor());
+                ChangeCMYB(htmlColor.ToCMYB());
+                ChangeHSL(htmlColor.ToHSL());
+                ChangeHTML(htmlColor.ToHTML());
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
+
         }
 
 
