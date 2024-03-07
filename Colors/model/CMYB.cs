@@ -91,7 +91,7 @@ namespace Colors.model
         /// <returns>The color with HSL components</returns>
         public HSL ToHSL()
         {
-            throw new NotImplementedException();
+            return ToRGB().ToHSL();
         }
         /// <summary>
         /// Convert the color in HTML
@@ -99,7 +99,7 @@ namespace Colors.model
         /// <returns>the color in HTML string format</returns>
         public HTML ToHTML()
         {
-            throw new NotImplementedException();
+            return ToRGB().ToHTML();
         }
 
         /// <summary>
@@ -108,7 +108,9 @@ namespace Colors.model
         /// <returns>the same color with RGB components</returns>
         public RGB ToRGB()
         {
-            throw new NotImplementedException();
+            return new RGB(255 * (100 - cyan * (1 - black / 100) - black) / 100,
+                            255 * (100 - magenta * (1 - black / 100) - black) / 100,
+                            255 * (100 - yellow * (1 - black / 100) - black) / 100);
         }
 
         /// <summary>
@@ -117,7 +119,8 @@ namespace Colors.model
         /// <returns>the color in standard WPF color format</returns>
         public Color ToColor()
         {
-            throw new NotImplementedException();
+            return ToRGB().ToColor();
+
         }
 
         #endregion

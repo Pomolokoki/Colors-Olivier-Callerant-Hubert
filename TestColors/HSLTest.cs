@@ -10,8 +10,9 @@ namespace TestColors
         public void TestToRGB()
         {
             HSL hsl = new HSL(196, 68, 50);
-            RGB exp = new RGB(41, 151, 128);
+            RGB exp = new RGB(40, 150, 127);// mofified values
             RGB res = hsl.ToRGB();
+
             Assert.Equal(exp,res);
         }
 
