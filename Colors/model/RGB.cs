@@ -81,15 +81,55 @@ namespace Colors.model
         /// <returns>The same color with CMJN components</returns>
         public CMYB ToCMYB()
         {
-            throw new NotImplementedException();
+            int R = 255 - this.Red;
+            int G = 255 - this.Green;
+            int B = 255 - this.Blue;
+
+            int X = 0;
+            if (R < G && R < B) { X = R; }
+            else if (G < B && G < B) { X = G; }
+            else { X = B; }
+
+            int C = 100 * (R - X) / (255 - X);
+            int M = 100 * (G - X) / (255 - X);
+            int J = 100 * (B - X) / (255 - X);
+            int N = 100 * X / 255;
+
+            CMYB val = new CMYB(C, M, J, N);
+            return val;
         }
         /// <summary>
         /// Convert the color in HSL
         /// </summary>
         /// <returns>The color with HSL components</returns>
+        /// <author>Callerand Thibault</author>
         public HSL ToHSL()
         {
-            throw new NotImplementedException();
+            int R = this.Red;
+            int G = this.Green;
+            int B = this.Blue;
+            int m1 = 0, m2 = 0, C = 0;
+
+            if (R > G && R > B) { m1 = R; }
+            else if (G > B && G > B) { m1 = G; }
+            else { m1 = B; };
+
+            if (R < G && R < B) { m2 = R; }
+            else if (G < B && G < B) { m2 = G; }
+            else { m2 = B; };
+
+            C = m1 - m2;
+            int T = 0;
+            if (m1 == R && C != 0) { T = 60 * (((G - B) / C) % 6); }
+            else if (m1 == G && C != 0) { T = 60 * (((B - R) / C) + 2); }
+            else if (C != 0) { T = 60 * (((R - G) / C) + 4); };
+
+            if (T < 0) { T += 360; };
+            int S = 100 * C / m1;
+            int L = (int)(100 * (0.3 * R + 0.6 * G + 0.1 * B) / 255);
+
+            HSL val = new HSL(T, S, L);
+            return val;
         }
         /// <summary>
         /// Convert the color in HTML
